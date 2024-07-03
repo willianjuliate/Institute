@@ -1,0 +1,28 @@
+{
+  "name": "willianjuliate/institute",
+  "description": "",
+  "minimum-stability": "stable",
+  "authors": [
+    {
+      "name": "Willian R. Juliate",
+      "email": "willianjuliate@gmail.com",
+      "homepage": "https://github.com/willianjuliate",
+      "role": "Developer"
+    }
+  ],
+  "config": {
+    "vendor-dir": "vendor"
+  },
+  "autoload": {
+    "psr-4": {
+      "Source\\": "source/"
+    },
+    "files": [
+      "source/Utils/Support/config.php",
+      "source/Utils/Support/helpers.php"
+    ]
+  },
+  "require": {
+    "ext-pdo": "*"
+  }
+}
