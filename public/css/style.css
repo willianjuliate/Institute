@@ -4,6 +4,7 @@ CSS 76sys.com.br
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 :root {
+    --black: #1F2026;
     --green: #35ba9B;
     --blue: #3aadd9;
     --yellow: #f5b945;
@@ -11,5 +12,74 @@ CSS 76sys.com.br
 }
 
 * {
+    margin: 0;
+    padding: 0;
+}
 
+body {
+    padding: 3%;
+    font-family: "Roboto", serif;
+    overflow-x: hidden;
+    color: #333333;
+}
+
+a {
+    color: var(--blue);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+article,
+pre {
+    margin: 20px 0;
+    padding-left: 10px;
+}
+
+p {
+    font-size: 0.875em;
+    margin: 10px 0;
+}
+
+.trigger {
+    font-size: 0.9em;
+    padding: 15px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    margin: 20px 0;
+    font-weight: bold;
+    border: 1px solid #cccccc;
+}
+
+.trigger small {
+    display: block;
+    margin-top: 7px;
+    font-family: "Roboto Mono", serif;
+    font-size: 0.75em;
+}
+
+.trigger.info {
+    color: var(--blue);
+    border-color: var(--blue);
+}
+
+.trigger.success,
+.trigger.accept {
+    color: var(--green);
+    border-color: var(--green);
+}
+
+.trigger.warning {
+    color: var(--yellow);
+    border-color: var(--yellow);
+}
+
+.trigger.error {
+    color: var(--red);
+    border-color: var(--red);
 }

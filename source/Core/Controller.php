@@ -11,7 +11,6 @@ abstract class Controller
 {
     /**  * @var stdClass */
     protected stdClass $view;
-
     /**
      *
      */

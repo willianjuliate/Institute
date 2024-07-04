@@ -30,7 +30,7 @@ const CONF_SOCIAL_FACEBOOK_AUTHOR = "";
 const CONF_URL_BASE = "https://institute.test";
 const CONF_URL_ADMIN = CONF_URL_BASE . "/admin";
 const CONF_URL_ERROR = CONF_URL_BASE . "/404";
-const CONF_PATH_VIEW = __DIR__ . "../../App/Views/";
+const CONF_PATH_VIEW = __DIR__ . "../../../App/Views/";
 
 /**
  * DATES
