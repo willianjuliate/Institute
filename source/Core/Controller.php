@@ -35,7 +35,6 @@ abstract class Controller
             $this->content();
         }
     }
-
     /**
      * @return void
      */
