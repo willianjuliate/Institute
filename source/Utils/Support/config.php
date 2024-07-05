@@ -99,3 +99,9 @@ const CONF_MAIL_OPTION_HTML = true;
 const CONF_MAIL_OPTION_AUTH = true;
 const CONF_MAIL_OPTION_SECURE = "tls";
 const CONF_MAIL_OPTION_CHARSET = "utf-8";
+
+/*
+ * ASSETS
+ */
+const CONF_PATH_CSS = "/css/";
+const CONF_PATH_JS = "/js/";

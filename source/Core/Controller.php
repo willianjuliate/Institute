@@ -9,14 +9,20 @@ use stdClass;
  */
 abstract class Controller
 {
-    /**  * @var stdClass */
+    /** * @var stdClass */
     protected stdClass $view;
+
+    /** * @var stdClass*/
+    protected stdClass $assets;
+
     /**
      *
      */
     public function __construct()
     {
         $this->view = new stdClass();
+        $this->assets = new stdClass();
+
     }
 
     /**

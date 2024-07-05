@@ -10,13 +10,10 @@ class IndexController extends Controller
 {
     public function index(): void
     {
+       //$this->assets->css = CONF_PATH_CSS . "style.css";
         $this->view->title = "Home";
         $this->render('index');
 
-        echo (new Message())->success("Teste!");
-        echo (new Message())->info("Teste!");
-        echo (new Message())->warning("Teste!");
-        echo (new Message())->error("Teste!");
     }
 
     /**
@@ -24,8 +21,12 @@ class IndexController extends Controller
      */
     public function eventos():void
     {
-        $this->view = (object)['title' => "Eventos", 'date' => date_fmt("now", "d/m/Y")];
-        var_dump($this->view);
+        //$this->assets->js = CONF_PATH_JS . 'script.js';
+
+        $this->view = (object)[
+            'title' => "Eventos",
+            'date' => date_fmt("now", "d/m/Y"),
+        ];
         $this->render('eventos');
     }
 }
