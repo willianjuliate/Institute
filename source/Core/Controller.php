@@ -4,9 +4,6 @@ namespace Source\Core;
 
 use stdClass;
 
-/**
- *
- */
 abstract class Controller
 {
     /** * @var stdClass */
@@ -15,9 +12,6 @@ abstract class Controller
     /** * @var stdClass*/
     protected stdClass $assets;
 
-    /**
-     *
-     */
     public function __construct()
     {
         $this->view = new stdClass();

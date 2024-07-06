@@ -2,20 +2,23 @@
 
 namespace Source\Core;
 
+use Source\Utils\Message;
+use stdClass;
+
 /**
- *
+ * Classe Route controla o fluxo das url
  */
 abstract class Route
 {
     /**
-     * @var array
+     * @var stdClass
      */
-    protected array $routes;
+    private stdClass $routes;
 
     /**
-     * @return mixed
+     * @return void
      */
-    abstract function init();
+    abstract function init(): void;
 
     /**
      *
@@ -23,45 +26,68 @@ abstract class Route
     public function __construct()
     {
         $this->init();
-        $this->run($this->getUrl());
+    }
+
+    public function __set(string $name, $value): void
+    {
+        if (empty($this->routes)) {
+            $this->routes = new stdClass();
+        }
+
+        $this->routes->name = $value;
     }
 
     /**
-     * @return array
+     * @return stdClass
      */
-    public function getRoutes(): array
+    private function getRoutes(): stdClass
     {
         return $this->routes;
     }
 
     /**
-     * @param array $routes
+     * @param string $name
+     * @param string $route
+     * @param string $controller
+     * @param string $action
      * @return void
      */
-    public function setRoutes(array $routes): void
-    {
-        $this->routes = $routes;
+    protected function route(
+        string $name,
+        string $route,
+        string $controller,
+        string $action
+    ):
+    void {
+        $object = new stdClass();
+        $object->name = $name;
+        $object->route = $route;
+        $object->controller = $controller;
+        $object->action = $action;
+
+        $this->routes = $object;
+
+        $this->run($this->getUrl());
     }
 
     /**
      * @param string $url
      * @return void
      */
-    protected function run(string $url): void
+    private function run(string $url): void
     {
-        foreach ($this->getRoutes() as $route) {
-            if ($url == $route['route']) {
-                $controller = new $route['controller'];
-                $action = $route['action'];
-                $controller->$action();
-            }
+        if ($this->routes->route == $url && isset($this->routes->name)) {
+            $controller = new $this->routes->controller;
+            $action = $this->routes->action;
+            $controller->$action();
         }
     }
 
     /**
-     * @return array|false|int|string|null
+     * @return mixed
      */
-    protected function getUrl(): array|false|int|null|string {
+    private function getUrl(): mixed
+    {
         return parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     }
 }

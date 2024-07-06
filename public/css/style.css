@@ -1,7 +1,4 @@
-/*
-CSS 76sys.com.br
-*/
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&display=swap');
 
 :root {
     --black: #1F2026;
@@ -11,16 +8,11 @@ CSS 76sys.com.br
     --red: #d94452;
 }
 
-* {
+body {
     margin: 0;
     padding: 0;
-}
-
-body {
-    padding: 3%;
-    font-family: "Roboto", serif;
-    overflow-x: hidden;
-    color: #333333;
+    font-family: 'Roboto', sans-serif;
+    background: #fff;
 }
 
 a {
@@ -82,4 +74,99 @@ p {
 .trigger.error {
     color: var(--red);
     border-color: var(--red);
+}
+
+.parent-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f7f8fa;
+}
+
+.login-box {
+    max-width: 550px;
+    width: 70vw;
+    padding: 40px;
+    background: #f7f8fa;
+    color: #212121;
+    text-align: center;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.32);
+    border: 1px solid #212121;
+}
+
+.login-box h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #212121;
+}
+
+.user-box {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.user-box input {
+    width: 100%;
+    padding: 10px 0;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #212121;
+    outline: none;
+    color: #212121;
+    font-size: 16px;
+}
+
+.user-box label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+.user-box input:focus ~ label,
+.user-box input:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: #0202ff;
+    font-size: 12px;
+}
+
+.address-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.address-row .user-box {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.address-row .user-box:last-child {
+    margin-right: 0;
+}
+
+button {
+    background: #000080;
+    border: none;
+    padding: 10px 20px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.5s;
+}
+
+button:hover {
+    background: rgba(2, 2, 255, 0.55);
+}
+
+.display-1 {
+    font-size: 4.5rem;
+    font-weight: 300;
+    line-height: 1.2;
+    margin: 0;
 }

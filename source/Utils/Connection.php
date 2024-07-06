@@ -16,7 +16,7 @@ class Connection
 
     private static PDO $instance;
 
-    public function instance(): PDO
+    public static function instance(): PDO
     {
         if (empty(self::$instance)) {
             try {

@@ -9,19 +9,10 @@ class IndexRoutes extends Route
 {
     public function init(): void
     {
-        $route['index'] = array(
-          'route' => '/',
-          'controller' => IndexController::class,
-          'action' => 'index'
-        );
-
-        $route['evento'] = array(
-            'route' => '/eventos',
-            'controller' => IndexController::class,
-            'action' => 'eventos'
-        );
-
-        $this->setRoutes($route);
+        $this->route('index','/', IndexController::class, 'index');
+        $this->route('login', '/login', IndexController::class, 'login');
+        $this->route('register', '/register', IndexController::class, 'register');
+        $this->route('eventos', '/eventos', IndexController::class, 'eventos');
     }
 
 }

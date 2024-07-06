@@ -19,7 +19,7 @@
     },
     "files": [
       "source/Utils/Support/config.php",
-      "source/Utils/Support/helpers.php"
+      "source/Utils/Support/utils.php"
     ]
   },
   "require": {

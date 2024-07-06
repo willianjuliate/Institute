@@ -10,23 +10,31 @@ class IndexController extends Controller
 {
     public function index(): void
     {
-       //$this->assets->css = CONF_PATH_CSS . "style.css";
+        //$this->assets->css = CONF_PATH_CSS . "style.css";
         $this->view->title = "Home";
         $this->render('index');
+    }
 
+    public function login(): void
+    {
+        $this->view->title = "# LOGIN #";
+        $this->render('login');
+    }
+
+    public function register(): void
+    {
+        $this->view->title = "# REGISTER #";
+        $this->render('register');
     }
 
     /**
      * @throws Exception
      */
-    public function eventos():void
+    public function eventos(): void
     {
-        //$this->assets->js = CONF_PATH_JS . 'script.js';
+        $this->view->title = "Eventos";
+        $this->view->date = date_fmt();
 
-        $this->view = (object)[
-            'title' => "Eventos",
-            'date' => date_fmt("now", "d/m/Y"),
-        ];
         $this->render('eventos');
     }
 }
