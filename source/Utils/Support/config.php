@@ -6,7 +6,7 @@
 const CONF_DB_HOST = "localhost";
 const CONF_DB_USER = "root";
 const CONF_DB_PASS = "";
-const CONF_DB_NAME = "institute";
+const CONF_DB_NAME = "institute_developer";
 
 /**
  * SITE
@@ -27,7 +27,7 @@ const CONF_SOCIAL_FACEBOOK_AUTHOR = "";
 /**
  * PROJECT URLs
  */
-const CONF_URL_BASE = "https://institute.test";
+const CONF_URL_BASE = "https://www.institute.me";
 const CONF_URL_ADMIN = CONF_URL_BASE . "/admin";
 const CONF_URL_ERROR = CONF_URL_BASE . "/404";
 const CONF_PATH_VIEW = __DIR__ . "../../../App/Views/";

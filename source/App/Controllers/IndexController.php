@@ -4,27 +4,23 @@ namespace Source\App\Controllers;
 
 use Exception;
 use Source\Core\Controller;
-use Source\Utils\Message;
 
 class IndexController extends Controller
 {
     public function index(): void
     {
-        //$this->assets->css = CONF_PATH_CSS . "style.css";
-        $this->view->title = "Home";
-        $this->render('index');
+        $this->render('index', ["title" => "Home"]);
     }
 
     public function login(): void
     {
-        $this->view->title = "# LOGIN #";
-        $this->render('login');
+        //$this->view->title = "# LOGIN #";
+        $this->render('login', ['title' => "Login"]);
     }
 
     public function register(): void
     {
-        $this->view->title = "# REGISTER #";
-        $this->render('register');
+        $this->render('register', ["title"=>"Register"]);
     }
 
     /**
@@ -32,9 +28,6 @@ class IndexController extends Controller
      */
     public function eventos(): void
     {
-        $this->view->title = "Eventos";
-        $this->view->date = date_fmt();
-
-        $this->render('eventos');
+        $this->render('eventos', ["title" => "Eventos", "date"=> date_fmt() ]);
     }
 }

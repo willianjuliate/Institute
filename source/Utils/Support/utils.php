@@ -6,6 +6,7 @@
  * ####################
  */
 
+use Random\RandomException;
 use Source\Utils\Message;
 use Source\Utils\Session;
 
@@ -62,6 +63,7 @@ function passwd_rehash(string $hash): bool
 
 /**
  * @return string
+ * @throws RandomException
  */
 function csrf_input(): string
 {
@@ -98,10 +100,18 @@ function str_slug(string $string): string
     $formats = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜüÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿRr"!@#$%&*()_-+={[}]/?;:.,\\\'<>°ºª';
     $replace = 'aaaaaaaceeeeiiiidnoooooouuuuuybsaaaaaaaceeeeiiiidnoooooouuuyybyRr                                 ';
 
-    return str_replace(["-----", "----", "---", "--"], "-",
-        str_replace(" ", "-",
-            trim(strtr(mb_convert_encoding($string, 'ISO-8859-1', 'UTF-8'),
-                mb_convert_encoding($formats, 'ISO-8859-1', 'UTF-8'), $replace))
+    return str_replace(["-----", "----", "---", "--"],
+        "-",
+        str_replace(
+            " ",
+            "-",
+            trim(
+                strtr(
+                    mb_convert_encoding($string, 'ISO-8859-1', 'UTF-8'),
+                    mb_convert_encoding($formats, 'ISO-8859-1', 'UTF-8'),
+                    $replace
+                )
+            )
         )
     );
 }
@@ -113,7 +123,9 @@ function str_slug(string $string): string
 function str_studly_case(string $string): string
 {
     $string = str_slug($string);
-    return str_replace(" ", "",
+    return str_replace(
+        " ",
+        "",
         mb_convert_case(str_replace("-", " ", $string), MB_CASE_TITLE)
     );
 }
@@ -191,7 +203,7 @@ function url(string $path): string
 /**
  * @param string $url
  */
-function redirect(string $url)
+function redirect(string $url): void
 {
     header("HTTP/1.1 302 Redirect");
     if (filter_var($url, FILTER_VALIDATE_URL)) {
@@ -202,6 +214,16 @@ function redirect(string $url)
     $location = url($url);
     header("Location: {$location}");
     exit;
+}
+
+/**
+ * #################
+ * ##  NAMESPACE ###
+ * ################
+ */
+function namespaces(): string
+{
+    return "Source\App\Controllers\\";
 }
 
 
@@ -217,7 +239,8 @@ function redirect(string $url)
  * @return string *
  * @throws Exception
  */
-function date_fmt(string $date = "now", string $format = "d/m/Y H\hi"): string {
+function date_fmt(string $date = "now", string $format = "d/m/Y H\hi"): string
+{
     return (new DateTime($date))->format($format);
 }
 
@@ -226,7 +249,8 @@ function date_fmt(string $date = "now", string $format = "d/m/Y H\hi"): string {
  * @return string
  * @throws Exception
  */
-function date_fmt_br(string $date = "now"): string {
+function date_fmt_br(string $date = "now"): string
+{
     return (new DateTime($date))->format(CONF_DATE_BR);
 }
 
@@ -235,7 +259,8 @@ function date_fmt_br(string $date = "now"): string {
  * @return string
  * @throws Exception
  */
-function date_fmt_app(string $date = "now"): string {
+function date_fmt_app(string $date = "now"): string
+{
     return (new DateTime($date))->format(CONF_DATE_APP);
 }
 
@@ -275,4 +300,9 @@ function session(): Session
  * ###   MODEL   ###
  * #################
  */
+
+function user(): \Source\App\Models\User
+{
+    return new \Source\App\Models\User();
+}
 

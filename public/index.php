@@ -1,4 +1,7 @@
 <?php
+
+use Source\App\Routes\Start;
+
 require __DIR__ . "/../vendor/autoload.php";
 
-$start = new \Source\App\Routes\IndexRoutes();
+Start::start();

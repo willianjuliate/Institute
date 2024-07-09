@@ -2,6 +2,7 @@
 
 namespace Source\Core;
 
+use PDO;
 use PDOException;
 use PDOStatement;
 use Source\Utils\Connection;
@@ -18,7 +19,7 @@ abstract class Model
     /**
      * @var PDOException|null
      */
-    protected ?PDOException $fail;
+    protected ?PDOException $fail = null;
     /**
      * @var Message|null
      */
@@ -74,7 +75,7 @@ abstract class Model
     /**
      * @return PDOException|null
      */
-    public function fail(): ?\PDOException
+    public function fail(): ?PDOException
     {
         return $this->fail;
     }
@@ -102,6 +103,7 @@ abstract class Model
             $smt->execute($this->filter($data));
 
             return Connection::instance()->lastInsertId();
+
         } catch (PDOException $exception) {
             $this->fail = $exception;
             return null;
@@ -121,16 +123,16 @@ abstract class Model
                 parse_str($params, $params);
                 foreach ($params as $key => $value) {
                     if ($key == 'limit' || $key == 'offset') {
-                        $stmt->bindValue(":{$key}", $value, \PDO::PARAM_INT);
+                        $stmt->bindValue(":{$key}", $value, PDO::PARAM_INT);
                     } else {
-                        $stmt->bindValue(":{$key}", $value, \PDO::PARAM_STR);
+                        $stmt->bindValue(":{$key}", $value, PDO::PARAM_STR);
                     }
                 }
             }
             $stmt->execute();
 
             return $stmt;
-        } catch (\PDOException $exception) {
+        } catch (PDOException $exception) {
             $this->fail = $exception;
             return null;
         }
@@ -157,7 +159,7 @@ abstract class Model
             $stmt->execute($this->filter(array_merge($data, $params)));
 
             return ($stmt->rowCount() ?? 1);
-        } catch (\PDOException $exception) {
+        } catch (PDOException $exception) {
             $this->fail = $exception;
             return null;
         }
@@ -177,7 +179,7 @@ abstract class Model
             $stmt->execute($params);
 
             return ($stmt->rowCount() ?? 1);
-        } catch (\PDOException $exception) {
+        } catch (PDOException $exception) {
             $this->fail = $exception;
             return null;
         }

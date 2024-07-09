@@ -28,7 +28,7 @@ class Connection
                 );
             } catch (PDOException $exception) {
                 # Criar Rotina para salvar o erro e enviar por email
-                die("<h1>Whoops! Erro ao conectar ... </h1>");
+                die("<h1 class='trigger warning'>Whoops! Erro ao conectar ... </h1>");
             }
         }
 

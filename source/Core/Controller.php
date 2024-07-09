@@ -16,7 +16,6 @@ abstract class Controller
     {
         $this->view = new stdClass();
         $this->assets = new stdClass();
-
     }
 
     /**
@@ -24,8 +23,14 @@ abstract class Controller
      * @param string $base
      * @return void
      */
-    protected function render(string $view, string $base = "base"): void
+    protected function render(string $view, array $data=[], string $base = "base"): void
     {
+        if ($data) {
+            foreach ($data as $key => $value) {
+                $this->view->$key = $value;
+            }
+        }
+
         $this->view->page = $view;
 
         if (file_exists(CONF_PATH_VIEW . $base . ".phtml")){
@@ -44,7 +49,7 @@ abstract class Controller
             str_replace(
                 'Controller',
                 '',
-                str_replace('Source\\App\\Controllers\\', '', $this::class)
+                str_replace(namespaces(), '', $this::class)
             )
         );
         require_once CONF_PATH_VIEW. $controller . '\\' . $this->view->page . '.phtml';

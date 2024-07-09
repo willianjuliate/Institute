@@ -2,92 +2,66 @@
 
 namespace Source\Core;
 
-use Source\Utils\Message;
-use stdClass;
+use Closure;
 
-/**
- * Classe Route controla o fluxo das url
- */
-abstract class Route
+class Route
 {
-    /**
-     * @var stdClass
-     */
-    private stdClass $routes;
+    private static array $routes;
 
-    /**
-     * @return void
-     */
-    abstract function init(): void;
-
-    /**
-     *
-     */
-    public function __construct()
+    public static function get(string $route, string|Closure $handler): void
     {
-        $this->init();
+        $get = "/" . filter_input(INPUT_GET, "url", FILTER_SANITIZE_SPECIAL_CHARS);
+        self::$routes = [
+            $route => [
+                "route" => $route,
+                "controller" => !is_string($handler) ? $handler : strstr($handler, "@", true),
+                "method" => !is_string($handler) ?: str_replace("@", "", strstr($handler, "@", false))
+            ],
+        ];
+
+        self::dispatcher($get);
     }
 
-    public function __set(string $name, $value): void
+    public static function post(): void
     {
-        if (empty($this->routes)) {
-            $this->routes = new stdClass();
-        }
 
-        $this->routes->name = $value;
     }
 
-    /**
-     * @return stdClass
-     */
-    private function getRoutes(): stdClass
+    public static function put(): void
     {
-        return $this->routes;
+
     }
 
-    /**
-     * @param string $name
-     * @param string $route
-     * @param string $controller
-     * @param string $action
-     * @return void
-     */
-    protected function route(
-        string $name,
-        string $route,
-        string $controller,
-        string $action
-    ):
-    void {
-        $object = new stdClass();
-        $object->name = $name;
-        $object->route = $route;
-        $object->controller = $controller;
-        $object->action = $action;
+    public static function delete():void
+    {
 
-        $this->routes = $object;
-
-        $this->run($this->getUrl());
     }
 
-    /**
-     * @param string $url
-     * @return void
-     */
-    private function run(string $url): void
+    public static function dispatcher(string $route): void
     {
-        if ($this->routes->route == $url && isset($this->routes->name)) {
-            $controller = new $this->routes->controller;
-            $action = $this->routes->action;
-            $controller->$action();
+        $route = self::$routes[$route] ?? [];
+
+        if ($route) {
+            if ($route['controller'] instanceof Closure) {
+                call_user_func($route['controller']);
+                return;
+            }
+
+            $controller = namespaces() . $route['controller'];
+            $method = $route['method'];
+
+            if (class_exists($controller)) {
+                $newController = new $controller;
+                if (method_exists($newController, $method)) {
+                    $newController->$method();
+                }
+            }
         }
     }
 
-    /**
-     * @return mixed
-     */
-    private function getUrl(): mixed
+    public static function route(): array
     {
-        return parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        return self::$routes;
     }
+
 }

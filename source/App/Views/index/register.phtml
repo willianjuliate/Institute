@@ -1,50 +1,63 @@
 <div class="parent-container">
     <div class="login-box">
         <h2>REGISTER</h2>
-        <form action="#">
-            <div class="user-box">
-                <input type="text" id="nome" name="nome" required>
-                <label for="nome">Nome</label>
+        <form action="/store" method="post">
+            <div class="form-row">
+                <div class="user-box">
+                    <input type="text" id="nome" name="first_name" required>
+                    <label for="nome">Nome</label>
+                </div>
+                <div class="user-box">
+                    <input type="text" id="sobrenome" name="last_name" required>
+                    <label for="sobrenome">Sobrenome</label>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="user-box">
+                    <input type="email" id="email" name="email" required>
+                    <label for="email">Email</label>
+                </div>
+                <div class="user-box">
+                    <input type="text" id="document" name="document" required>
+                    <label for="document">Documento</label>
+                </div>
             </div>
             <div class="user-box">
-                <input type="email" id="email" name="email" required>
-                <label for="email">Email</label>
-            </div>
-            <div class="user-box">
-                <input type="password" id="senha" name="senha" required>
+                <input type="password" id="senha" name="passwd" required>
                 <label for="senha">Senha</label>
             </div>
             <div class="address-row">
                 <div class="user-box">
-                    <input type="text" id="rua" name="rua" required>
+                    <input type="text" id="rua" name="street" required>
                     <label for="rua">Rua</label>
                 </div>
                 <div class="user-box">
-                    <input type="text" id="numero" name="numero" required>
+                    <input type="text" id="numero" name="number" required>
                     <label for="numero">Número</label>
                 </div>
             </div>
             <div class="address-row">
                 <div class="user-box">
-                    <input type="text" id="bairro" name="bairro" required>
+                    <input type="text" id="bairro" name="district" required>
                     <label for="bairro">Bairro</label>
                 </div>
                 <div class="user-box">
-                    <input type="text" id="cidade" name="cidade" required>
+                    <input type="text" id="cidade" name="city" required>
                     <label for="cidade">Cidade</label>
                 </div>
             </div>
             <div class="address-row">
                 <div class="user-box">
-                    <input type="text" id="estado" name="estado" required>
+                    <input type="text" id="estado" name="state" required>
                     <label for="estado">Estado</label>
                 </div>
                 <div class="user-box">
-                    <input type="text" id="cep" name="cep" required>
+                    <input type="text" id="cep" name="zip_code" required>
                     <label for="cep">CEP</label>
                 </div>
             </div>
             <button type="submit">Cadastrar</button>
         </form>
     </div>
+    <?php var_dump($_POST) ?>
 </div>

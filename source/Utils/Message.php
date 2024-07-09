@@ -62,7 +62,7 @@ class Message
 
     public function flash(): void
     {
-        //(new Session()->set("flash"), $this);
+        (new Session())->set("flash", $this);
     }
 
     public function filter(string $message): string

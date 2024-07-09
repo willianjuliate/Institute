@@ -40,8 +40,6 @@ p {
 .trigger {
     font-size: 0.9em;
     padding: 15px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
     border-radius: 4px;
     margin: 20px 0;
     font-weight: bold;
@@ -135,16 +133,19 @@ p {
     font-size: 12px;
 }
 
+.form-row,
 .address-row {
     display: flex;
     justify-content: space-between;
 }
 
+.form-row .user-box,
 .address-row .user-box {
     flex: 1;
     margin-right: 10px;
 }
 
+.form-row .user-box:last-child,
 .address-row .user-box:last-child {
     margin-right: 0;
 }
