@@ -13,19 +13,19 @@ use Source\Core\Model;
  * @property string|null $document
  * @property int|null $id
  */
-class User extends Model
+class Manager extends Model
 {
     protected static array $safe = ["id", "created_at", "updated_at"];
     protected static array $required = ["first_name", "last_name", "email", "passwd"];
-    protected static string $entity = "users";
+    protected static string $entity = "manager";
 
     public function bootstrap(
         string $firstName,
         string $lastName,
         string $mail,
         string $passwd,
-        string $document = null
-    ): User {
+        string $document = ''
+    ): Manager {
         $this->first_name = $firstName;
         $this->last_name = $lastName;
         $this->email = $mail;
@@ -35,7 +35,7 @@ class User extends Model
         return $this;
     }
 
-    public function find(string $terms, string $params, string $columns = "*"): ?User
+    public function find(string $terms, string $params, string $columns = "*"): ?Manager
     {
         $find = $this->read("SELECT {$columns} FROM " . self::$entity . " WHERE {$terms}", $params);
         if ($this->fail() or !$find->rowCount()) {
@@ -45,12 +45,12 @@ class User extends Model
         return $find->fetchObject(__CLASS__);
     }
 
-    public function findById(int $id, string $columns = '*'): ?User
+    public function findById(int $id, string $columns = '*'): ?Manager
     {
         return $this->find("id = :id", "id={$id}", $columns);
     }
 
-    public function findByEmail(string $email, string $columns = '*'): ?User
+    public function findByEmail(string $email, string $columns = '*'): ?Manager
     {
         return $this->find("email = :email", "email={$email}", $columns);
     }
@@ -68,7 +68,7 @@ class User extends Model
         return $all->fetchAll(PDO::FETCH_CLASS, __CLASS__);
     }
 
-    public function created(): ?User
+    public function created(): ?Manager
     {
         if (!$this->validateFields()) {
             return null;
@@ -92,7 +92,7 @@ class User extends Model
         return $this;
     }
 
-    public function updated(): ?User
+    public function updated(): ?Manager
     {
         if (!$this->validateFields()) {
             return null;
@@ -139,7 +139,7 @@ class User extends Model
         return true;
     }
 
-    public function destroy(): ?User
+    public function destroy(): ?Manager
     {
         if (!empty($this->id)) {
             $this->delete(self::$entity, "id = :id", "id={$this->id}");

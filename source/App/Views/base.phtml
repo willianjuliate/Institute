@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?= $this->assets->css ?? "/css/style.css" ?>">
+    <link rel="stylesheet" href="css/style.css">
 
-    <title><?= $this->view->title ?></title>
+    <title>
+        <?= $this->data->title ?>
+    </title>
 
 </head>
 
 <body>
-    <?= $this->content() ?>
+        <?= $this->content() ?>
 </body>
-
-<script src="<?= $this->assets->js ?? "" ?>"></script>
 </html>

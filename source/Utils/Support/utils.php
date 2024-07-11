@@ -226,6 +226,15 @@ function namespaces(): string
     return "Source\App\Controllers\\";
 }
 
+function tag_generator(string $tagName, array $attributes = [], string $content = ''): string
+{
+    $attrString = '';
+    foreach ($attributes as $key => $value) {
+        $attrString .= " $key=\"$value\"";
+    }
+
+    return "<$tagName$attrString>$content</$tagName>";
+}
 
 /**
  * ###############
@@ -301,8 +310,13 @@ function session(): Session
  * #################
  */
 
-function user(): \Source\App\Models\User
+function manager(): \Source\App\Models\Manager
 {
-    return new \Source\App\Models\User();
+    return new \Source\App\Models\Manager();
+}
+
+function address(): \Source\App\Models\Address
+{
+    return new \Source\App\Models\Address();
 }
 

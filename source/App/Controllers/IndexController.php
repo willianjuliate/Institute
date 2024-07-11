@@ -14,13 +14,17 @@ class IndexController extends Controller
 
     public function login(): void
     {
-        //$this->view->title = "# LOGIN #";
         $this->render('login', ['title' => "Login"]);
     }
 
     public function register(): void
     {
-        $this->render('register', ["title"=>"Register"]);
+        $this->render('register', ["title" => "Register"]);
+    }
+
+    public function store():void
+    {
+        redirect('login');
     }
 
     /**
@@ -28,6 +32,6 @@ class IndexController extends Controller
      */
     public function eventos(): void
     {
-        $this->render('eventos', ["title" => "Eventos", "date"=> date_fmt() ]);
+        $this->render('eventos', ["title" => "Eventos", "date" => date_fmt()]);
     }
 }

@@ -1,7 +1,17 @@
+<div class="navbar">
+    <div class="dropdown">
+        <button class="dropbtn">🔐</button>
+        <div class="dropdown-content">
+<!--            <a href="--><?php //= CONF_URL_BASE ?><!--">Home</a>-->
+            <a href="<?= CONF_URL_BASE . '/login' ?>">Entrar</a>
+            <a href="<?= CONF_URL_BASE . '/register'?>">Cadastrar</a>
+        </div>
+    </div>
+</div>
 <div class="parent-container">
     <div class="login-box">
         <h2>REGISTER</h2>
-        <form action="/store" method="post">
+        <form action="/register/store" method="post">
             <div class="form-row">
                 <div class="user-box">
                     <input type="text" id="nome" name="first_name" required>
@@ -59,5 +69,4 @@
             <button type="submit">Cadastrar</button>
         </form>
     </div>
-    <?php var_dump($_POST) ?>
 </div>
